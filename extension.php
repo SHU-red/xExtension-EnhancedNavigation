@@ -17,6 +17,41 @@ class EnhancedNavigationExtension extends Minz_Extension {
     }
     
     public function generateEnhancedNavigation(): string {
-        return include 'navigation.phtml';
+        return <<<NAV
+            <nav id="nav_entries">
+                {$this->generatePreviousEntryButton()}
+                {$this->generateLinkButton()}
+                {$this->generateUpButton()}
+                {$this->generateFavoriteButton()}
+                {$this->generateNextEntryButton()}
+            </nav>
+            NAV;
+    }
+
+    private function generateButton(string $class, string $title, string $icon): string {
+        $title = _t($title);
+        $icon = _i($icon);
+
+        return "<button class=\"{$class}\" title=\"{$title}\">{$icon}</button>";
+    }
+
+    private function generatePreviousEntryButton(): string {
+        return $this->generateButton('previous_entry', 'gen.action.nav_buttons.prev', 'prev');
+    }
+
+    private function generateLinkButton(): string {
+        return $this->generateButton('link', 'conf.shortcut.see_on_website', 'link');
+    }
+
+    private function generateUpButton(): string {
+        return $this->generateButton('up', 'gen.action.nav_buttons.up', 'up');
+    }
+
+    private function generateFavoriteButton(): string {
+        return $this->generateButton('favorite', 'conf.shortcut.mark_favorite', 'non-starred');
+    }
+
+    private function generateNextEntryButton(): string {
+        return $this->generateButton('next_entry', 'gen.action.nav_buttons.next', 'next');
     }
 }
