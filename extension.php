@@ -18,7 +18,7 @@ class EnhancedNavigationExtension extends Minz_Extension {
     
     public function generateEnhancedNavigation(): string {
         return <<<NAV
-            <nav id="nav_entries">
+            <nav id="nav_entries_enhanced">
                 {$this->generatePreviousEntryButton()}
                 {$this->generateLinkButton()}
                 {$this->generateUpButton()}

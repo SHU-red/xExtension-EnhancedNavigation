@@ -1,5 +1,5 @@
-function init_nav_entries_override() {
-	const nav_entries = document.getElementById('nav_entries');
+function init_nav_entries_enhanced() {
+	const nav_entries = document.getElementById('nav_entries_enhanced');
 	if (nav_entries) {
 		nav_entries.querySelector('.previous_entry').onclick = function (e) {
 			prev_entry(false);
@@ -35,10 +35,10 @@ function init_nav_entries_override() {
 }
 
 if (document.readyState && document.readyState !== 'loading') {
-	init_nav_entries_override();
+	init_nav_entries_enhanced();
 } else {
 	if (window.console) {
 		console.log('FreshRSS waiting for DOMContentLoaded…');
 	}
-	document.addEventListener('DOMContentLoaded', init_nav_entries_override, false);
+	document.addEventListener('DOMContentLoaded', init_nav_entries_enhanced, false);
 }

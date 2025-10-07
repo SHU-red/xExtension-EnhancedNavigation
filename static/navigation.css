@@ -1,3 +1,38 @@
-#nav_entries button {
-    width: 20%;
+#nav_entries {
+    display: none;
+}
+
+@media print {
+    #nav_entries_enhanced {
+        display: none;
+    }
+}
+
+@media (max-width: 840px) {
+    #nav_entries_enhanced {
+        width: 100%;
+    }
+}
+
+#nav_entries_enhanced {
+	display: table;
+	position: fixed;
+	bottom: 0rem; left: 0;
+	width: 300px;
+	table-layout: fixed;
+	padding-bottom: env(safe-area-inset-bottom);
+	z-index: 50;
+}
+
+#nav_entries_enhanced button {
+	background-color: transparent;
+	display: table-cell;
+	width: 20%;
+	height: 3rem;
+	border: 0;
+	cursor: pointer;
+}
+
+#nav_entries_enhanced button:hover {
+	background-color: var(--frss-darken-background-hover-transparent);
 }
