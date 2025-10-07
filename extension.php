@@ -22,7 +22,7 @@ class EnhancedNavigationExtension extends Minz_Extension {
         if (Minz_Request::isPost()) {
             $this->setUserConfiguration([
                 'show_previous_entry_button' => Minz_Request::paramBoolean('show_previous_entry_button'),
-                'show_link_button' => Minz_Request::paramBoolean('show_link_button'),
+                'show_see_on_website_button' => Minz_Request::paramBoolean('show_see_on_website_button'),
                 'show_up_button' => Minz_Request::paramBoolean('show_up_button'),
                 'show_favorite_button' => Minz_Request::paramBoolean('show_favorite_button'),
                 'show_next_entry_button' => Minz_Request::paramBoolean('show_next_entry_button'),
@@ -34,7 +34,7 @@ class EnhancedNavigationExtension extends Minz_Extension {
         return <<<NAV
             <nav id="nav_entries_enhanced">
                 {$this->generatePreviousEntryButton()}
-                {$this->generateLinkButton()}
+                {$this->generateSeeOnWebsiteButton()}
                 {$this->generateUpButton()}
                 {$this->generateFavoriteButton()}
                 {$this->generateNextEntryButton()}
@@ -57,8 +57,8 @@ class EnhancedNavigationExtension extends Minz_Extension {
         return '';
     }
 
-    private function generateLinkButton(): string {
-        if ($this->showLinkButton()) {
+    private function generateSeeOnWebsiteButton(): string {
+        if ($this->showSeeOnWebSiteButton()) {
             return $this->generateButton('link', 'conf.shortcut.see_on_website', 'link');
         }
 
@@ -93,8 +93,8 @@ class EnhancedNavigationExtension extends Minz_Extension {
         return $this->getUserConfigurationValue('show_previous_entry_button');
     }
 
-    public function showLinkButton(): bool {
-        return $this->getUserConfigurationValue('show_link_button');
+    public function showSeeOnWebSiteButton(): bool {
+        return $this->getUserConfigurationValue('show_see_on_website_button');
     }
 
     public function showUpButton(): bool {
