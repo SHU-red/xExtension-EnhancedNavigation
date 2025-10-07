@@ -1,0 +1,45 @@
+<form action="<?= _url('extension', 'configure', 'e', urlencode($this->getName())); ?>" method="post">
+	<input type="hidden" name="_csrf" value="<?= FreshRSS_Auth::csrfToken(); ?>" />
+
+	<div class="form-group">
+		<label class="group-name" for="show_previous_entry_button"><?= _t('ext.enhance_navigation.show_previous_entry_button'); ?></label>
+		<div class="group-controls">
+			<input type="checkbox" name="show_previous_entry_button" id="show_previous_entry_button" value="1" <?= $this->showPreviousEntryButton() ? 'checked=true' : '' ?>/>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="group-name" for="show_link_button"><?= _t('ext.enhance_navigation.show_link_button'); ?></label>
+		<div class="group-controls">
+			<input type="checkbox" name="show_link_button" id="show_link_button" value="1" <?= $this->showLinkButton() ? 'checked=true' : '' ?>/>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="group-name" for="show_up_button"><?= _t('ext.enhance_navigation.show_up_button'); ?></label>
+		<div class="group-controls">
+			<input type="checkbox" name="show_up_button" id="show_up_button" value="1" <?= $this->showUpButton() ? 'checked=true' : '' ?>/>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="group-name" for="show_favorite_button"><?= _t('ext.enhance_navigation.show_favorite_button'); ?></label>
+		<div class="group-controls">
+			<input type="checkbox" name="show_favorite_button" id="show_favorite_button" value="1" <?= $this->showFavoriteButton() ? 'checked=true' : '' ?>/>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="group-name" for="show_next_entry_button"><?= _t('ext.enhance_navigation.show_next_entry_button'); ?></label>
+		<div class="group-controls">
+			<input type="checkbox" name="show_next_entry_button" id="show_next_entry_button" value="1" <?= $this->showNextEntryButton() ? 'checked=true' : '' ?>/>
+		</div>
+	</div>
+
+	<div class="form-group form-actions">
+		<div class="group-controls">
+			<button type="submit" class="btn btn-important"><?= _t('gen.action.submit'); ?></button>
+			<button type="reset" class="btn"><?= _t('gen.action.cancel'); ?></button>
+		</div>
+	</div>
+</form>

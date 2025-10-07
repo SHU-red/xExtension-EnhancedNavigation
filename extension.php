@@ -16,6 +16,20 @@ class EnhancedNavigationExtension extends Minz_Extension {
         Minz_View::appendScript($this->getFileUrl('navigation.js', 'js'));
     }
     
+    public function handleConfigureAction(): void {
+        $this->registerTranslates();
+
+        if (Minz_Request::isPost()) {
+            $this->setUserConfiguration([
+                'show_previous_entry_button' => Minz_Request::paramBoolean('show_previous_entry_button'),
+                'show_link_button' => Minz_Request::paramBoolean('show_link_button'),
+                'show_up_button' => Minz_Request::paramBoolean('show_up_button'),
+                'show_favorite_button' => Minz_Request::paramBoolean('show_favorite_button'),
+                'show_next_entry_button' => Minz_Request::paramBoolean('show_next_entry_button'),
+            ]);
+        }
+    }
+
     public function generateEnhancedNavigation(): string {
         return <<<NAV
             <nav id="nav_entries_enhanced">
@@ -36,22 +50,62 @@ class EnhancedNavigationExtension extends Minz_Extension {
     }
 
     private function generatePreviousEntryButton(): string {
-        return $this->generateButton('previous_entry', 'gen.action.nav_buttons.prev', 'prev');
+        if ($this->showPreviousEntryButton()) {
+            return $this->generateButton('previous_entry', 'gen.action.nav_buttons.prev', 'prev');
+        }
+
+        return '';
     }
 
     private function generateLinkButton(): string {
-        return $this->generateButton('link', 'conf.shortcut.see_on_website', 'link');
+        if ($this->showLinkButton()) {
+            return $this->generateButton('link', 'conf.shortcut.see_on_website', 'link');
+        }
+
+        return '';
     }
 
     private function generateUpButton(): string {
-        return $this->generateButton('up', 'gen.action.nav_buttons.up', 'up');
+        if ($this->showUpButton()) {
+            return $this->generateButton('up', 'gen.action.nav_buttons.up', 'up');
+        }
+
+        return '';
     }
 
     private function generateFavoriteButton(): string {
-        return $this->generateButton('favorite', 'conf.shortcut.mark_favorite', 'non-starred');
+        if ($this->showFavoriteButton()) {
+            return $this->generateButton('favorite', 'conf.shortcut.mark_favorite', 'non-starred');
+        }
+
+        return '';
     }
 
     private function generateNextEntryButton(): string {
-        return $this->generateButton('next_entry', 'gen.action.nav_buttons.next', 'next');
+        if ($this->showNextEntryButton()) {
+            return $this->generateButton('next_entry', 'gen.action.nav_buttons.next', 'next');
+        }
+
+        return '';
+    }
+
+    public function showPreviousEntryButton(): bool {
+        return $this->getUserConfigurationValue('show_previous_entry_button');
+    }
+
+    public function showLinkButton(): bool {
+        return $this->getUserConfigurationValue('show_link_button');
+    }
+
+    public function showUpButton(): bool {
+        return $this->getUserConfigurationValue('show_up_button');
+    }
+
+    public function showFavoriteButton(): bool {
+        return $this->getUserConfigurationValue('show_favorite_button');
+    }
+
+    public function showNextEntryButton(): bool {
+        return $this->getUserConfigurationValue('show_next_entry_button');
     }
 }
