@@ -2,18 +2,6 @@
     display: none;
 }
 
-@media print {
-    #nav_entries_enhanced {
-        display: none;
-    }
-}
-
-@media (max-width: 840px) {
-    #nav_entries_enhanced {
-        width: 100%;
-    }
-}
-
 #nav_entries_enhanced {
 	display: table;
 	position: fixed;
@@ -34,4 +22,21 @@
 
 #nav_entries_enhanced button:hover {
 	background-color: var(--frss-darken-background-hover-transparent);
+}
+
+#nav_entries_enhanced {
+	background-color: var(--background-color-light);
+	border-top: 1px solid var(--border-color);
+}
+
+@media print {
+    #nav_entries_enhanced {
+        display: none;
+    }
+}
+
+@media (max-width: 840px) {
+    #nav_entries_enhanced {
+        width: 100%;
+    }
 }
