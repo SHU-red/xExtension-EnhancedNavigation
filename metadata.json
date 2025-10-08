@@ -1,8 +1,8 @@
 {
-	"name": "Enhanced Navigation",
-	"author": "Alexis Degrugillier",
-	"description": "Add an enhanced navigation bar.",
-	"version": "0.0.1",
-	"entrypoint": "EnhancedNavigation",
-	"type": "user"
+    "name": "Enhanced Navigation",
+    "author": "Alexis Degrugillier",
+    "description": "Add an enhanced navigation bar.",
+    "version": "0.1.0",
+    "entrypoint": "EnhancedNavigation",
+    "type": "user"
 }
