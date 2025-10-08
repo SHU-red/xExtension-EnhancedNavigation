@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 class EnhancedNavigationExtension extends Minz_Extension {
+    private const FILENAME = 'style.css';
+
     public function init(): void {
         $this->registerTranslates();
 
@@ -14,6 +16,9 @@ class EnhancedNavigationExtension extends Minz_Extension {
 
         Minz_View::appendStyle($this->getFileUrl('navigation.css', 'css'));
         Minz_View::appendScript($this->getFileUrl('navigation.js', 'js'));
+        if ($this->hasFile(self::FILENAME)) {
+            Minz_View::appendStyle($this->getFileUrl(self::FILENAME, isStatic: false));
+        }
     }
     
     public function handleConfigureAction(): void {
@@ -27,7 +32,24 @@ class EnhancedNavigationExtension extends Minz_Extension {
                 'show_favorite_button' => Minz_Request::paramBoolean('show_favorite_button'),
                 'show_next_entry_button' => Minz_Request::paramBoolean('show_next_entry_button'),
             ]);
+            $this->saveFile(self::FILENAME, <<<CSS
+                #nav_entries_enhanced button {
+                    width: {$this->computeButtonWidth()}%;
+                }
+                CSS);
         }
+    }
+
+    private function computeButtonWidth(): int {
+        $activeButtons = array_intersect_assoc([
+            'show_previous_entry_button' => true,
+            'show_see_on_website_button' => true,
+            'show_up_button' => true,
+            'show_favorite_button' => true,
+            'show_next_entry_button' => true,
+        ], $this->getUserConfiguration());
+
+        return (int)(100 / count($activeButtons));
     }
 
     public function generateEnhancedNavigation(): string {

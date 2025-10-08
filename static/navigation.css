@@ -27,7 +27,6 @@
 #nav_entries_enhanced button {
 	background-color: transparent;
 	display: table-cell;
-	width: 20%;
 	height: 3rem;
 	border: 0;
 	cursor: pointer;
