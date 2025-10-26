@@ -112,22 +112,22 @@ class EnhancedNavigationExtension extends Minz_Extension {
     }
 
     public function showPreviousEntryButton(): bool {
-        return $this->getUserConfigurationValue('show_previous_entry_button');
+        return (bool) ($this->getUserConfigurationValue('show_previous_entry_button') ?? true);
     }
 
     public function showSeeOnWebSiteButton(): bool {
-        return $this->getUserConfigurationValue('show_see_on_website_button');
+        return (bool) ($this->getUserConfigurationValue('show_see_on_website_button') ?? true);
     }
 
     public function showUpButton(): bool {
-        return $this->getUserConfigurationValue('show_up_button');
+        return (bool) ($this->getUserConfigurationValue('show_up_button') ?? true);
     }
 
     public function showFavoriteButton(): bool {
-        return $this->getUserConfigurationValue('show_favorite_button');
+        return (bool) ($this->getUserConfigurationValue('show_favorite_button') ?? true);
     }
 
     public function showNextEntryButton(): bool {
-        return $this->getUserConfigurationValue('show_next_entry_button');
+        return (bool) ($this->getUserConfigurationValue('show_next_entry_button') ?? true);
     }
 }
