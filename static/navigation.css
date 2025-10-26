@@ -10,23 +10,24 @@
 	table-layout: fixed;
 	padding-bottom: env(safe-area-inset-bottom);
 	z-index: 50;
+	background-color: var(--background-color-light);
+	border-top: 1px solid var(--border-color);
 }
 
 #nav_entries_enhanced button {
 	background-color: transparent;
 	display: table-cell;
-	height: 3rem;
+	height: 3.5rem;            /* slightly smaller to fit 5 in 300px */
+	width: 20%;                /* each button takes exactly 1/5 of width */
 	border: 0;
 	cursor: pointer;
+	padding: 0.25rem;          /* small internal padding */
+	text-align: center;
+	vertical-align: middle;
 }
 
 #nav_entries_enhanced button:hover {
 	background-color: var(--frss-darken-background-hover-transparent);
-}
-
-#nav_entries_enhanced {
-	background-color: var(--background-color-light);
-	border-top: 1px solid var(--border-color);
 }
 
 @media print {
@@ -40,3 +41,4 @@
         width: 100%;
     }
 }
+
